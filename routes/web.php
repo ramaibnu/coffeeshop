@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,7 +21,10 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('pages.dashboard');
 });
-Route::get('/login', [LoginController::class,'index'])->name('login.index');
-Route::get('/login', [LoginController::class,'index'])->name('login.index');
-Route::post('/login/store', [LoginController::class,'store'])->name('login.store');
+Route::get('/login', [LoginController::class, 'index'])->name('login.index');
+Route::get('/login', [LoginController::class, 'index'])->name('login.index');
+Route::post('/login/store', [LoginController::class, 'store'])->name('login.store');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+// User
+Route::get('/user', [UserController::class, 'index'])->name('user.index');
