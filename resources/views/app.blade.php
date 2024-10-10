@@ -18,6 +18,7 @@
     <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon">
 
     <link rel="stylesheet" href="{{ asset('/assets/vendors/simple-datatables/style.css') }}">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css">
 </head>
 
 <body>
@@ -109,6 +110,7 @@
 
     <script src="assets/extensions/simple-datatables/umd/simple-datatables.js"></script>
     <script src="{{ asset('/assets/vendors/simple-datatables/simple-datatables.js') }}"></script>
+    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
     @yield('addon-script')
 </body>
 
