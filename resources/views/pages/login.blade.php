@@ -44,8 +44,11 @@
             </div>
             <div class="col-lg-7 d-none d-lg-block">
                 <!-- <img src="{{asset('/assets/images/cofee_login.jpg')}}" alt=""> -->
-                <div id="auth-right">
-                    
+                <div id="auth-right" style="display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;">
+                    <img src="{{asset('/assets/images/cangkir.png')}}" width="450" height="450" alt="logo">
                 </div>
             </div>
         </div>

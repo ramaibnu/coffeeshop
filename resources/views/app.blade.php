@@ -4,18 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Mazer Admin Dashboard</title>
+    <title>Coffee Shop Apps</title>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="{{asset('/assets/css/bootstrap.css')}}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="assets/vendors/iconly/bold.css">
+    <link rel="stylesheet" href="{{asset('/assets/vendors/iconly/bold.css')}}">
 
-    <link rel="stylesheet" href="assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
-    <link rel="stylesheet" href="assets/vendors/bootstrap-icons/bootstrap-icons.css">
-    <link rel="stylesheet" href="assets/css/app.css">
-    <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon">
+    <link rel="stylesheet" href="{{asset('/assets/vendors/perfect-scrollbar/perfect-scrollbar.css')}}">
+    <link rel="stylesheet" href="{{asset('/assets/vendors/bootstrap-icons/bootstrap-icons.css')}}">
+    <link rel="stylesheet" href="{{asset('/assets/css/app.css')}}">
+    <link rel="shortcut icon" href="{{asset('/assets/images/favicon.svg')}}" type="image/x-icon">
 
     <link rel="stylesheet" href="{{ asset('/assets/vendors/simple-datatables/style.css') }}">
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css">
@@ -28,7 +28,7 @@
                 <div class="sidebar-header">
                     <div class="d-flex justify-content-between">
                         <div class="logo">
-                            <a href="index.html"><img src="assets/images/logo/logo.png" alt="Logo"
+                            <a href="index.html"><img src="{{asset('/assets/images/coffee_logo.jpg')}}" alt="Logo"
                                     srcset=""></a>
                         </div>
                         <div class="toggler">
@@ -46,13 +46,19 @@
                                 <span>Dashboard</span>
                             </a>
                         </li>
+                        @if (Auth::user()->type == 'admin')
                         <li class="sidebar-item" id="users">
-                            @if (Auth::user()->type == 'admin')
-                                <a href="/user" class='sidebar-link'>
-                                    <i class="bi bi-person"></i>
-                                    <span>Users</span>
-                                </a>
-                            @endif
+                            <a href="/user" class='sidebar-link'>
+                                <i class="bi bi-person"></i>
+                                <span>Users</span>
+                            </a>
+                        </li>
+                        @endif
+                        <li class="sidebar-item" id="suppliers">
+                            <a href="{{route('supplier.index')}}" class='sidebar-link'>
+                                <i class="bi bi-files"></i>
+                                <span>Suppliers</span>
+                            </a>
                         </li>
                         <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link'>
@@ -89,6 +95,7 @@
 
             <div class="page-heading">
                 @yield('content')
+                @include('sweetalert::alert')
             </div>
 
             <footer>
@@ -100,17 +107,19 @@
             </footer>
         </div>
     </div>
-    <script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="{{asset('/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
+    <script src="{{asset('/assets/js/bootstrap.bundle.min.js')}}"></script>
 
-    <script src="assets/vendors/apexcharts/apexcharts.js"></script>
-    <script src="assets/js/pages/dashboard.js"></script>
+    <script src="{{asset('/assets/vendors/apexcharts/apexcharts.js')}}"></script>
+    <script src="{{asset('/assets/js/pages/dashboard.js')}}"></script>
 
-    <script src="assets/js/main.js"></script>
+    <script src="{{asset('/assets/js/main.js')}}"></script>
 
-    <script src="assets/extensions/simple-datatables/umd/simple-datatables.js"></script>
+    <script src="{{asset('/assets/extensions/simple-datatables/umd/simple-datatables.js')}}"></script>
     <script src="{{ asset('/assets/vendors/simple-datatables/simple-datatables.js') }}"></script>
     <script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+
     @yield('addon-script')
 </body>
 
@@ -123,8 +132,11 @@
             case 'dashboard':
                 $("#dashboard").addClass('active');
                 break;
-            case 'users':
+            case 'user':
                 $("#users").addClass('active');
+                break;
+            case 'supplier':
+                $("#suppliers").addClass('active');
                 break;
             default:
                 break;
